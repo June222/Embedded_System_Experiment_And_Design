@@ -1,0 +1,325 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.22.1.15669/W32 for ARM       14/Sep/2022  21:50:16
+# Copyright 1999-2018 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  C:\Users\pnu9\Desktop\project_test\user\main.c
+#    Command line =  
+#        -f C:\Users\pnu9\AppData\Local\Temp\EWD3D9.tmp
+#        (C:\Users\pnu9\Desktop\project_test\user\main.c -D
+#        USE_STDPERIPH_DRIVER -D STM32F10X_CL -lC
+#        C:\Users\pnu9\Desktop\project_test\Debug\List -o
+#        C:\Users\pnu9\Desktop\project_test\Debug\Obj --no_cse --no_unroll
+#        --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling
+#        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\pnu9\Desktop\project_test\libraries\CMSIS\DeviceSupport\ -I
+#        C:\Users\pnu9\Desktop\project_test\libraries\CMSIS\DeviceSupport\Startup\
+#        -I
+#        C:\Users\pnu9\Desktop\project_test\libraries\STM32F10x_StdPeriph_Driver_v3.5\inc\
+#        -I
+#        C:\Users\pnu9\Desktop\project_test\libraries\STM32F10x_StdPeriph_Driver_v3.5\src\
+#        -I C:\Users\pnu9\Desktop\project_test\user\ -I
+#        C:\Users\pnu9\Desktop\project_test\user\inc\ -Ol -I "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Core\Include\" -I
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\CMSIS\DSP\Include\")
+#    Locale       =  C
+#    List file    =  C:\Users\pnu9\Desktop\project_test\Debug\List\main.lst
+#    Object file  =  C:\Users\pnu9\Desktop\project_test\Debug\Obj\main.o
+#
+###############################################################################
+
+C:\Users\pnu9\Desktop\project_test\user\main.c
+      1          #include "stm32f10x.h"
+      2          #include "stdio.h"
+      3          
+      4          #define UP 0x20
+      5          #define DOWN 0x4
+      6          #define LEFT 0x8
+      7          #define RIGHT 0x10
+      8          
+      9          // Enable Port D REGISTER
+     10          #define RCC_APB2ENR (*(volatile unsigned int*) 0x40021018)
+     11          
+     12          // PORT D: I/O MODE REGISTER
+     13          #define GPIOD_CRL (*(volatile unsigned int *) 0x40011400)
+     14          
+     15          // LED ON REGISTER
+     16          #define GPIOD_BSRR (*(volatile unsigned int *) 0x40011410)
+     17          
+     18          // INPUT PORT C
+     19          #define GPIOC_CRL (*(volatile unsigned int *) 0x40011000)
+     20          #define GPIOC_IDR (*(volatile unsigned int *) 0x40011008)
+     21          
+     22          #define PC5 (*(volatile unsigned int *) 0x40011022)
+     23          #define PC2 (*(volatile unsigned int *) GPIOC_CRL + 0x02)
+     24          #define PC3 (*(volatile unsigned int *) GPIOC_CRL + 0x03)
+     25          #define PC4 (*(volatile unsigned int *) GPIOC_CRL + 0x04)
+     26          
+     27          // OUTPUT PORT D
+     28          #define GPIOD_ODR (*(volatile unsigned int *) 0x4001140C)
+     29          #define GPIOD_BRR (*(volatile unsigned int *) 0x40011414)
+     30          
+     31          
+
+   \                                 In section .text, align 2, keep-with-next
+     32          void Delay(vu32 cnt){
+   \                     Delay: (+1)
+   \   00000000   0xB401             PUSH     {R0}
+   \   00000002   0xE002             B.N      ??Delay_0
+     33            for(; cnt!=0; cnt--);
+   \                     ??Delay_1: (+1)
+   \   00000004   0x9800             LDR      R0,[SP, #+0]
+   \   00000006   0x1E40             SUBS     R0,R0,#+1
+   \   00000008   0x9000             STR      R0,[SP, #+0]
+   \                     ??Delay_0: (+1)
+   \   0000000A   0x9800             LDR      R0,[SP, #+0]
+   \   0000000C   0x2800             CMP      R0,#+0
+   \   0000000E   0xD1F9             BNE.N    ??Delay_1
+     34          }
+   \   00000010   0xB001             ADD      SP,SP,#+4
+   \   00000012   0x4770             BX       LR               ;; return
+     35          
+
+   \                                 In section .text, align 2, keep-with-next
+     36          int main(void)
+     37          {
+   \                     main: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     38            // PORT D Enable
+     39            RCC_APB2ENR |= 0x20;
+   \   00000002   0x....             LDR.N    R0,??DataTable1  ;; 0x40021018
+   \   00000004   0x6800             LDR      R0,[R0, #+0]
+   \   00000006   0xF050 0x0020      ORRS     R0,R0,#0x20
+   \   0000000A   0x....             LDR.N    R1,??DataTable1  ;; 0x40021018
+   \   0000000C   0x6008             STR      R0,[R1, #+0]
+     40            
+     41            // PORT C EN
+     42            RCC_APB2ENR |= 0x10;
+   \   0000000E   0x....             LDR.N    R0,??DataTable1  ;; 0x40021018
+   \   00000010   0x6800             LDR      R0,[R0, #+0]
+   \   00000012   0xF050 0x0010      ORRS     R0,R0,#0x10
+   \   00000016   0x....             LDR.N    R1,??DataTable1  ;; 0x40021018
+   \   00000018   0x6008             STR      R0,[R1, #+0]
+     43            
+     44            // GPIOC_CRL = 0x44444444;
+     45            
+     46            GPIOC_CRL &= !0x00FFFF00;
+   \   0000001A   0x....             LDR.N    R0,??DataTable1_1  ;; 0x40011000
+   \   0000001C   0x6800             LDR      R0,[R0, #+0]
+   \   0000001E   0x2000             MOVS     R0,#+0
+   \   00000020   0x....             LDR.N    R1,??DataTable1_1  ;; 0x40011000
+   \   00000022   0x6008             STR      R0,[R1, #+0]
+     47            GPIOC_CRL |= 0x00888800;
+   \   00000024   0x....             LDR.N    R0,??DataTable1_1  ;; 0x40011000
+   \   00000026   0x6800             LDR      R0,[R0, #+0]
+   \   00000028   0xF440 0x0008      ORR      R0,R0,#0x880000
+   \   0000002C   0xF450 0x4008      ORRS     R0,R0,#0x8800
+   \   00000030   0x....             LDR.N    R1,??DataTable1_1  ;; 0x40011000
+   \   00000032   0x6008             STR      R0,[R1, #+0]
+     48            
+     49            GPIOD_CRL &= ~0xF00FFF00;
+   \   00000034   0x....             LDR.N    R0,??DataTable1_2  ;; 0x40011400
+   \   00000036   0x6801             LDR      R1,[R0, #+0]
+   \   00000038   0x....             LDR.N    R0,??DataTable1_3  ;; 0xff000ff
+   \   0000003A   0x4001             ANDS     R1,R0,R1
+   \   0000003C   0x....             LDR.N    R0,??DataTable1_2  ;; 0x40011400
+   \   0000003E   0x6001             STR      R1,[R0, #+0]
+     50            GPIOD_CRL |= 0x30033300;
+   \   00000040   0x....             LDR.N    R0,??DataTable1_2  ;; 0x40011400
+   \   00000042   0x6801             LDR      R1,[R0, #+0]
+   \   00000044   0x....             LDR.N    R0,??DataTable1_4  ;; 0x30033300
+   \   00000046   0x4301             ORRS     R1,R0,R1
+   \   00000048   0x....             LDR.N    R0,??DataTable1_2  ;; 0x40011400
+   \   0000004A   0x6001             STR      R1,[R0, #+0]
+     51            // 0. PortC@ IDR @@@
+     52            GPIOC_IDR &= 0x00000000;
+   \   0000004C   0x....             LDR.N    R0,??DataTable1_5  ;; 0x40011008
+   \   0000004E   0x6800             LDR      R0,[R0, #+0]
+   \   00000050   0x2000             MOVS     R0,#+0
+   \   00000052   0x....             LDR.N    R1,??DataTable1_5  ;; 0x40011008
+   \   00000054   0x6008             STR      R0,[R1, #+0]
+     53            GPIOD_BSRR &= 0x00000000;
+   \   00000056   0x....             LDR.N    R0,??DataTable1_6  ;; 0x40011410
+   \   00000058   0x6800             LDR      R0,[R0, #+0]
+   \   0000005A   0x2000             MOVS     R0,#+0
+   \   0000005C   0x....             LDR.N    R1,??DataTable1_6  ;; 0x40011410
+   \   0000005E   0x6008             STR      R0,[R1, #+0]
+   \   00000060   0xE024             B.N      ??main_0
+     54          
+     55            
+     56            
+     57            
+     58          
+     59            while(1){  
+     60              // 1. PortC@ IDR @@
+     61                 if(!(GPIOC_IDR & UP) ) {
+     62                  GPIOD_BSRR |= 0x04;
+     63              // LED 2() ON 
+     64                  GPIOD_BSRR |= 0x08;
+     65                     
+     66                 }
+     67                else if(!(GPIOC_IDR & DOWN) ) {
+     68                  GPIOD_BRR |= 0x04;
+     69              // LED 2()  
+     70                  GPIOD_BRR |= 0x08;
+     71                }
+     72                else if(!(GPIOC_IDR & LEFT) ) {
+     73                  GPIOD_BSRR |= 0x10;
+     74              // LED 2() off
+     75                  GPIOD_BSRR |= 0x80;
+     76                }
+     77                else if(!(GPIOC_IDR & RIGHT) ) {
+   \                     ??main_1: (+1)
+   \   00000062   0x....             LDR.N    R0,??DataTable1_5  ;; 0x40011008
+   \   00000064   0x6800             LDR      R0,[R0, #+0]
+   \   00000066   0x06C0             LSLS     R0,R0,#+27
+   \   00000068   0xD41C             BMI.N    ??main_2
+     78                  GPIOD_BRR |= 0x10;
+   \   0000006A   0x....             LDR.N    R0,??DataTable1_7  ;; 0x40011414
+   \   0000006C   0x6800             LDR      R0,[R0, #+0]
+   \   0000006E   0xF050 0x0010      ORRS     R0,R0,#0x10
+   \   00000072   0x....             LDR.N    R1,??DataTable1_7  ;; 0x40011414
+   \   00000074   0x6008             STR      R0,[R1, #+0]
+     79              // LED 2() ON 
+     80                  GPIOD_BRR |= 0x80;
+   \   00000076   0x....             LDR.N    R0,??DataTable1_7  ;; 0x40011414
+   \   00000078   0x6800             LDR      R0,[R0, #+0]
+   \   0000007A   0xF050 0x0080      ORRS     R0,R0,#0x80
+   \   0000007E   0x....             LDR.N    R1,??DataTable1_7  ;; 0x40011414
+   \   00000080   0x6008             STR      R0,[R1, #+0]
+   \   00000082   0xE00F             B.N      ??main_2
+     81                }
+   \                     ??main_3: (+1)
+   \   00000084   0x....             LDR.N    R0,??DataTable1_5  ;; 0x40011008
+   \   00000086   0x6800             LDR      R0,[R0, #+0]
+   \   00000088   0x0700             LSLS     R0,R0,#+28
+   \   0000008A   0xD4EA             BMI.N    ??main_1
+   \   0000008C   0x....             LDR.N    R0,??DataTable1_6  ;; 0x40011410
+   \   0000008E   0x6800             LDR      R0,[R0, #+0]
+   \   00000090   0xF050 0x0010      ORRS     R0,R0,#0x10
+   \   00000094   0x....             LDR.N    R1,??DataTable1_6  ;; 0x40011410
+   \   00000096   0x6008             STR      R0,[R1, #+0]
+   \   00000098   0x....             LDR.N    R0,??DataTable1_6  ;; 0x40011410
+   \   0000009A   0x6800             LDR      R0,[R0, #+0]
+   \   0000009C   0xF050 0x0080      ORRS     R0,R0,#0x80
+   \   000000A0   0x....             LDR.N    R1,??DataTable1_6  ;; 0x40011410
+   \   000000A2   0x6008             STR      R0,[R1, #+0]
+     82                Delay(10000);
+   \                     ??main_2: (+1)
+   \   000000A4   0xF242 0x7010      MOVW     R0,#+10000
+   \   000000A8   0x.... 0x....      BL       Delay
+   \                     ??main_0: (+1)
+   \   000000AC   0x....             LDR.N    R0,??DataTable1_5  ;; 0x40011008
+   \   000000AE   0x6800             LDR      R0,[R0, #+0]
+   \   000000B0   0x0680             LSLS     R0,R0,#+26
+   \   000000B2   0xD40C             BMI.N    ??main_4
+   \   000000B4   0x....             LDR.N    R0,??DataTable1_6  ;; 0x40011410
+   \   000000B6   0x6800             LDR      R0,[R0, #+0]
+   \   000000B8   0xF050 0x0004      ORRS     R0,R0,#0x4
+   \   000000BC   0x....             LDR.N    R1,??DataTable1_6  ;; 0x40011410
+   \   000000BE   0x6008             STR      R0,[R1, #+0]
+   \   000000C0   0x....             LDR.N    R0,??DataTable1_6  ;; 0x40011410
+   \   000000C2   0x6800             LDR      R0,[R0, #+0]
+   \   000000C4   0xF050 0x0008      ORRS     R0,R0,#0x8
+   \   000000C8   0x....             LDR.N    R1,??DataTable1_6  ;; 0x40011410
+   \   000000CA   0x6008             STR      R0,[R1, #+0]
+   \   000000CC   0xE7EA             B.N      ??main_2
+   \                     ??main_4: (+1)
+   \   000000CE   0x....             LDR.N    R0,??DataTable1_5  ;; 0x40011008
+   \   000000D0   0x6800             LDR      R0,[R0, #+0]
+   \   000000D2   0x0740             LSLS     R0,R0,#+29
+   \   000000D4   0xD4D6             BMI.N    ??main_3
+   \   000000D6   0x....             LDR.N    R0,??DataTable1_7  ;; 0x40011414
+   \   000000D8   0x6800             LDR      R0,[R0, #+0]
+   \   000000DA   0xF050 0x0004      ORRS     R0,R0,#0x4
+   \   000000DE   0x....             LDR.N    R1,??DataTable1_7  ;; 0x40011414
+   \   000000E0   0x6008             STR      R0,[R1, #+0]
+   \   000000E2   0x....             LDR.N    R0,??DataTable1_7  ;; 0x40011414
+   \   000000E4   0x6800             LDR      R0,[R0, #+0]
+   \   000000E6   0xF050 0x0008      ORRS     R0,R0,#0x8
+   \   000000EA   0x....             LDR.N    R1,??DataTable1_7  ;; 0x40011414
+   \   000000EC   0x6008             STR      R0,[R1, #+0]
+   \   000000EE   0xE7D9             B.N      ??main_2
+     83            }
+     84            
+     85            
+     86            
+     87            
+     88            
+     89           
+     90            
+     91            
+     92          
+     93          
+     94            
+     95            
+     96          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   0x40021018         DC32     0x40021018
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \   00000000   0x40011000         DC32     0x40011000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_2:
+   \   00000000   0x40011400         DC32     0x40011400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_3:
+   \   00000000   0x0FF000FF         DC32     0xff000ff
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_4:
+   \   00000000   0x30033300         DC32     0x30033300
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_5:
+   \   00000000   0x40011008         DC32     0x40011008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_6:
+   \   00000000   0x40011410         DC32     0x40011410
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_7:
+   \   00000000   0x40011414         DC32     0x40011414
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       4   Delay
+       8   main
+         8   -> Delay
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+       4  ??DataTable1_1
+       4  ??DataTable1_2
+       4  ??DataTable1_3
+       4  ??DataTable1_4
+       4  ??DataTable1_5
+       4  ??DataTable1_6
+       4  ??DataTable1_7
+      20  Delay
+     240  main
+
+ 
+ 292 bytes in section .text
+ 
+ 292 bytes of CODE memory
+
+Errors: none
+Warnings: none
