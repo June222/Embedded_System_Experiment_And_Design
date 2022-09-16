@@ -23,10 +23,6 @@
 #define GPIOD_ODR (*(volatile unsigned int *) 0x4001140C)
 #define GPIOD_BRR (*(volatile unsigned int *) 0x40011414)
 
-void Delay(vu32 cnt){
-  for(; cnt!=0; cnt--);
-}
-
 int main(void)
 {
   // PORT D EN
@@ -35,21 +31,21 @@ int main(void)
   // PORT C EN
   RCC_APB2ENR |= 0x10;
   
-  // PORT C Pull Up-Down: √ ±‚»≠, Pin º≥¡§
+  // PORT C Pull Up-Down: Ï¥àÍ∏∞Ìôî, Pin ÏÑ§Ï†ï
   GPIOC_CRL &= !0x00FFFF00;
   GPIOC_CRL |= 0x00888800;
   
-  // PORT D Pull Up-Down: √ ±‚»≠, Pin º≥¡§
+  // PORT D Pull Up-Down: Ï¥àÍ∏∞Ìôî, Pin ÏÑ§Ï†ï
   GPIOD_CRL &= ~0xF00FFF00;
   GPIOD_CRL |= 0x30033300;
   
-  // Port C ¿« IDR √ ±‚»≠
+  // Port C Ïùò IDR Ï¥àÍ∏∞Ìôî
   GPIOC_IDR &= 0x00000000;
-  // Port D ¿« ON/OFF √ ±‚»≠
+  // Port D Ïùò ON/OFF Ï¥àÍ∏∞Ìôî
   GPIOD_BSRR &= 0x00000000;
 
   while(1){  
-    // Port C ¿« IDR ∞™ »Æ¿Œ(UP, DOWN, LEFT, RIGHT)
+    // Port C Ïùò IDR Í∞í ÌôïÏù∏(UP, DOWN, LEFT, RIGHT)
        if(!(GPIOC_IDR & UP) ) {
         // LED ON 
         GPIOD_BSRR |= 0x04; // 2
@@ -70,6 +66,5 @@ int main(void)
         GPIOD_BRR |= 0x10; // 4 
         GPIOD_BRR |= 0x80; // 7
       }
-      Delay(10000);
   }
 }
