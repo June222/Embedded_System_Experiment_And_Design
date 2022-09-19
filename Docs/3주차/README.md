@@ -52,8 +52,9 @@ PD 가 의미하는 것은 GPIO Port D, PC 가 의미하는 것은 GPIO Port C�
 GPIO는 APB2 버스를 통해 접근 되므로 APB2 버스를 활성화 시켜야한다.  <br>
 “Reference Manual.pdf”를 보고 RCC 레지스터에서 APB2 버스에 관련된 clock을 찾는다. <br>
 
-
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/6.png"  width="500">
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/7.png"  width="500">
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/8.png"  width="300">
 
 
 port C와 port D를 사용하기 때문에 IOPCEN(Bit 4)와 IOPDEN(Bit 5)를 제어해주어야한다. <br>
@@ -61,7 +62,7 @@ port C와 port D를 사용하기 때문에 IOPCEN(Bit 4)와 IOPDEN(Bit 5)를 제
 
 그러면 RCC_APB2ENR 레지스터 주소에 접근을 해야한다. <br>
 “Datasheet.pdf”를 통해 찾은 RCC 레지스터 시작 주소는 0x40021000 이였다. <br>
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/9.png"  width="300"> <br>
 RCC_APB2ENR 레지스터의 address offset이 0x18 이였기에 RCC_APB2ENR 레지스터의 주소는 0x40021000 + 0x18 = 0x40021018 이 된다. <br>
 
 코드로 작성해보면 아래와 같다. <br>
@@ -75,7 +76,9 @@ RCC_APB2ENR 레지스터의 address offset이 0x18 이였기에 RCC_APB2ENR 레�
 ### 2. GPIO 포트 초기화 및 Pin 설정
 clock이 공급되었다면 이제 GPIO port에 Data를 전달해주어야한다. <br>
 CRL은 0~7 핀에 관여하는데, 우리는 port C 2,3,4,5 와 port D 2,3,4,7 을 사용하므로 CRL을 사용한다.<br>
- Datasheet 33 page. <br>
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/10.png"  width="300">
+ -> Datasheet 33 page. <br>
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/11.png"  width="300">
 GPIOD(0x40011400), GPIOx_CRL address offset(0x00) 이므로 0x40011400 가 주소, <br>
 GPIOC(0x40011000), GPIOx_CRL address offset(0x00) 이므로 0x40011000 가 주소다.  <br>
 
@@ -97,7 +100,7 @@ portC는 2,3,4,5 번째 비트에 해당하는 부분을 초기화 하고, pin�
 ### 3. GPIO  포트에 input 설정하기
 조이스틱은 PortC를 이용해서 탐지가 가능하다. <br>
 GPIOC_IDR 인 input data register 를 이용해서 탐지한다. <br>
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/12.png"  width="300"><br>
 GPIOC(0x40011000), GPIOx_IDR address offset(0x08) 이므로 0x40011008 로 주소 지정한다.<br>
 `#define GPIOC_IDR (*(volatile unsigned int *) 0x40011008)` <br>
  
@@ -109,7 +112,8 @@ port C의 IDR을 초기화 한다. <br>
 BRR은 reset을 관여하는 레지스터고, BSRR은 reset과 set 둘다 관여하는 레지스터이다. <br>
 연산량을 줄이기 위해는 reset은 BRR 레지스터로만, set은 BSRR 레지스터로만 제어할 것이다. <br>
 
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/13.png"  width="300">
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/14.png"  width="300"> <br>
 GPIOD(0x40011400), GPIOx_BSRR address offset(0x10) 이므로 0x40011410 가 주소.<br>
 GPIOD(0x40011400), GPIOx_BRR address offset(0x14) 이므로 0x40011414 가 주소.<br>
 
