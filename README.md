@@ -21,4 +21,4 @@
 
 | 주차  |   내용    |   담당자   |             링크              |
 | :---: | :-------: | :--------: | :---------------------------: |
-| 3주차 | GPIO 제어 | 지수, 준수 | [](Docs/3%EC%A3%BC%EC%B0%A8/) |
+| 3주차 | GPIO 제어 | 지수, 준수 | [](https://docs.google.com/document/d/1S3TbLKwOXcE0FI5cDhaxH21qYTuSy9O4QYeY9Xzx5Nw/edit#heading=h.mld5un901z4f) |
