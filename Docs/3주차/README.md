@@ -21,7 +21,7 @@ GPIO(general-purpose input/output)를 사용하여 조이스틱과 LED를 제어
 - 이 PORT 들은 APB2 버스를 통해 데이터가 전달되며 <br>
 - RCC(Reset Clock Control)는 이 버스의 활성화(Clock)를 관리한다.<br>
 <img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/1.png"  width="500">
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/2.png"  width="500">
 ### 2. Reference Manual을 이용한 I/O 장치의 주소 접근 && 포인터를 이용하여 주어진 address의 value 제어
 
 - GPIO Port E의 BSRR 레지스터 주소 계산: <br>
@@ -35,15 +35,15 @@ volatile unsigned int* var_name = “address1” <br>
 var_name = “value2” <br>
 
 ### 3. 알고리즘
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/3.png"  width="500">
 <br>
 
 ## 🥇실험 과정
 
 ### 1. RCC 를 사용하여 GPIO 에 clock 인가하기
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/4.png"  width="200">
 LED 1,2,3,4 ➡️ PD 2,3,4,7 <br>
-
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/5.png"  width="300">
 DOWN, LEFT, RIGHT, UP ➡️ PC 2,3,4,5 <br>
 
 PD 가 의미하는 것은 GPIO Port D, PC 가 의미하는 것은 GPIO Port C로 우리는 포트 C와 D를 사용할 것이다. <br>
