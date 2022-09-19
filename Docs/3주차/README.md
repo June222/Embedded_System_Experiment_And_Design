@@ -17,12 +17,10 @@ GPIO(general-purpose input/output)를 사용하여 조이스틱과 LED를 제어
 ## 🥇실험 이론 및 원리
 ### 1. GPIO, RCC, Clock, PORT
 
-입출력 장치는 GPIO(General Purpose Input Output)가 관리하며, 각 장치 마다 사용하는 PORT가 있고, <br>
-이 PORT 들은 APB2 버스를 통해 데이터가 전달되며 <br>
-RCC(Reset Clock Control)는 이 버스의 활성화(Clock)를 관리한다.<br>
-
-
-
+- 입출력 장치는 GPIO(General Purpose Input Output)가 관리하며, 각 장치 마다 사용하는 PORT가 있고, <br>
+- 이 PORT 들은 APB2 버스를 통해 데이터가 전달되며 <br>
+- RCC(Reset Clock Control)는 이 버스의 활성화(Clock)를 관리한다.<br>
+<img src = "https://github.com/June222/Embedded_System_Experiment_And_Design/blob/main/Docs/3%EC%A3%BC%EC%B0%A8/image/1.png"  width="500">
 
 ### 2. Reference Manual을 이용한 I/O 장치의 주소 접근 && 포인터를 이용하여 주어진 address의 value 제어
 
