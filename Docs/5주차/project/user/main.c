@@ -52,7 +52,7 @@ void SetSysClock(void) {
         FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
         FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_0;
 
-//@TODO - 1 Set the clock, (//) ??? ??��? ????? ??? ???? ???? ????? ?? ?????? ??????y? 
+//@TODO - 1 Set the clock, (//) ??? ??©ª? ????? ??? ???? ???? ????? ?? ?????? ??????y? 
         /* HCLK = SYSCLK */
         RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
         /* PCLK2 = HCLK / ?, use PPRE2 */
@@ -167,7 +167,12 @@ void UartInit(void) {
     /* Determine the integer part */
     /* Determine the fractional part */
 //@TODO - 11: Calculate & configure BRR
-    USART1->BRR |= 0x1e6;
+    USART1->BRR |= 0x3CC; 
+	/*
+    	if set Div1 :  0x3CC 
+    	else if set Div2 : 0x1E6
+	9조는 Div1으로 세팅했기 때문에 '0x3CC'가 계산 결과 값으로 나왔습니다. 
+    	*/
     /*---------------------------- USART Enable ----------------------------------*/
     /* USART Enable Configuration */
 //@TODO - 12: Enable USART (UE)
