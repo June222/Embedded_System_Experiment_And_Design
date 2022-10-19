@@ -11,3 +11,4 @@
 | 5주차 | 시리얼 통신 | [5주차 실험 보고서](https://docs.google.com/document/d/1k-exbZ7qgduen7cyoUHztweYzscyKfukxhIkS7De370/edit?usp=sharing) | [5주차 실험영상](https://photos.app.goo.gl/JRMNsTfqTfzaTaDx5)
 | 6주차 | Interrupt로 GPIO 제어 | [6주차 실험 보고서](https://docs.google.com/document/d/16tepuv5DA5PHIAux5GeDcnPRzBRpwnazYHM86b31Njg/edit#heading=h.z10t1mu7dlmf) or [readme로 보기]() | [6주차 실험영상](https://photos.app.goo.gl/RnX5UYrkochgCVVy8)
 | 7주차 | Bluetooth 동작과 납땜 | [7주차 실험 보고서](https://docs.google.com/document/d/1dVHxr1Nl6x4CWfSRmQ9Pqg0fraUVmwRY9Z6v2Zw9XqM/edit?usp=sharing) |  [7주차 실험영상](https://photos.app.goo.gl/spyhem2qCeN8cpu26)| 
+| 8주차 | LCD 및 ADC | | |
