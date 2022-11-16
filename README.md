@@ -13,4 +13,4 @@
 | 7주차 | Bluetooth 동작과 납땜 | [7주차 실험 보고서](https://docs.google.com/document/d/1dVHxr1Nl6x4CWfSRmQ9Pqg0fraUVmwRY9Z6v2Zw9XqM/edit?usp=sharing) |  [7주차 실험영상](https://photos.app.goo.gl/spyhem2qCeN8cpu26)| 
 | 8주차 | LCD 및 ADC | [8주차 실험 보고서](https://docs.google.com/document/d/17mNosAhdudUajtVvhxzc0eFRvJxA_3kwyfSXBxvE_PY/edit?usp=sharing) | [8주차 실험영상](https://photos.app.goo.gl/CwtCR5ynBoXnEM88A) |
 | 10주차 | Timer 와 PWM | [10주차 실험 보고서](https://docs.google.com/document/d/1wiRmAbEzdFGMQzOJOJzyyNo2j2W3Lc9DTIvdHjCAe9U/edit?usp=sharing) | [10주차 실험영상](https://photos.app.goo.gl/EFZPgXeHEvjShudf8) |
-| 11주차 | DMA | [11주차 실험 보고서]() | [11주차 실험영상](https://photos.app.goo.gl/4wwKrpoPnNkJ4po66)| 
+| 11주차 | DMA | [11주차 실험 보고서](https://docs.google.com/document/d/1HqRNtAROG3fA-NARqH-3ukjIW5EznxOG0Satv_0Jamg/edit?usp=sharing) | [11주차 실험영상](https://photos.app.goo.gl/4wwKrpoPnNkJ4po66)| 
